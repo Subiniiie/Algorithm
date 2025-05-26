@@ -1,0 +1,29 @@
+연속된 자연수의 합을 구하는 문제이므로 시작 인덱스와 종료 인덱스를 지정하여 연속된 수를 표현
+(백준 2018)
+
+N(합) = 15가 되는 연속된 자연수 구하기
+start_index
+1               2   3   4   5   6   7   8   9   10  11  12  13  14  15
+end_index
+초기화 : sum = 1, count = 1
+
+투 포인터 이동 원칙을 활용해서 배열의 끝까지 탐색하면서 합이 N이 될 경우의 수 구하기
+* 투 포인터 이동 원칙
+- sum > N 일 때 sum = sum - start_index; start_index++;
+- sum < N 일 때 sum = end_index++; sum = sum + end_index;
+- sum == N 일 때 end_index++; sum = sum + end_index; count++;
+
+start_index를 오른쪽으로 한 칸 이동하는 것은 연속된 자연수에서 왼쪽 값을 삭제하는 것(-)
+end_index를 오른쪽으로 한 칸 이동하는 것은 연속된 자연수의 범위를 한 칸 더 확장하는 의미(+)
+같을 때는 경우의 수를 1 증가시키고 end_index를 오른쪽으로 이동
+
+* 슈도코드 작성
+n 변수 저장
+사용 변수 초기화(count = 1(start_index와 end_index가 15일 때), start_index = 1, end_index = 1, sum = 1)
+
+while end_index != n :
+    if sum == n : 경우의 수 1 증가, end_index 1 증가, sum 변경(sum + end_index)
+    elif sum > n : sum 변경(sum - start_index), start_index 1 증가
+    else(sum < n) : end_index 1 증가, sum 변경(sum + end_index)
+
+경우의 수(count) 출력
