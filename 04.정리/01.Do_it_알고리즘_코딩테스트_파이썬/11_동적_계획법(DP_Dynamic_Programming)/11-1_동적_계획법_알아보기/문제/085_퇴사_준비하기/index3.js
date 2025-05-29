@@ -17,11 +17,11 @@ for (let i = 1; i < N+1; i++) {
     P[i] = p;
 };
 
-for (let i = N; i > 1; i--) {
+for (let i = N; i > 0; i--) {
     if (i + T[i] > N + 1) {
         D[i] = D[i+1];
     } else {
-        D[i] = Math.max(D[i], D[i+T[i]] + P[i]);
+        D[i] = Math.max(D[i+1], D[i+T[i]] + P[i]);
     }
 };
 
