@@ -22,23 +22,16 @@ arr.sort(function (a, b) {
 
 while (minIndex < maxIndex) {
     sum = arr[minIndex] + arr[maxIndex];
-    console.log('sum 확인 = ', sum)
     if (sum === M) {
-        console.log('sum === M일 때 초기 = ', minIndex, maxIndex, sum)
         minIndex += 1;
         maxIndex -= 1;
         count += 1;
-        console.log('sum === M일 때 후기 = ', minIndex, maxIndex, sum)
     } else if (sum > M) {
-        console.log('sum > M 초기 = ', minIndex, maxIndex, sum)
         sum -= arr[maxIndex];
         maxIndex -= 1;
-        console.log('sum > M 후기 = ', minIndex, maxIndex, sum)
     } else {
-        console.log('sum < M 초기 = ', minIndex, maxIndex, sum)
         sum -= arr[minIndex];
         minIndex += 1;
-        console.log('sum < M 후기 = ', minIndex, maxIndex, sum)
     }
 };
 
