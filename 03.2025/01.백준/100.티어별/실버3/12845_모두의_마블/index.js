@@ -13,8 +13,6 @@ let gold = 0;
 let maxNum = 0;
 let maxIdx = 0;
 
-let temp = 0;
-
 for (let i = 0; i < n; i++) {
     if (maxNum < cards[i]) {
         maxNum = cards[i];
@@ -26,22 +24,26 @@ while (cards.length > 0) {
     if (cards.length > 1) {
         if (maxIdx > 0 && maxIdx < n - 1) {
             if (cards[maxIdx-1] > cards[maxIdx+1]) {
-                gold += cards[maxIdx-1];
+                gold += cards[maxIdx] + cards[maxIdx-1];
                 cards.splice(maxIdx-1, 1);
+                maxIdx -= 1;
             } else {
-                gold += cards[maxIdx+1];
+                gold += cards[maxIdx] + cards[maxIdx+1];
                 cards.splice(maxIdx+1, 1);
             };
         } else if (maxIdx === 0) {
-            gold += cards[maxIdx+1];
+            gold += cards[maxIdx] + cards[maxIdx+1];
             cards.splice(maxIdx+1, 1);
         } else {
-            gold += cards[maxIdx-1];
+            gold += cards[maxIdx] + cards[maxIdx-1];
             cards.splice(maxIdx-1, 1);
+            maxIdx -= 1;
         }
     } else {
-        gold += cards[maxIdx];
-        cards.splice(maxIdx, 1);
+        if (gold === 0) {
+            gold += cards[0];
+        };
+        break;
     };
 };
 
